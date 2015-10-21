@@ -6,7 +6,6 @@ COMMENT_ERROR_MESSAGE = 'comment to code ratio too low'
 
 class CommentToCodeRatio(object):
     name = 'flakes-comment-ratio'
-    version = __version__
 
     def __init__(self, tree, filename='(none)', builtins=None):
         self.tree = tree
