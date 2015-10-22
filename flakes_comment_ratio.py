@@ -21,8 +21,11 @@ class CommentToCodeRatio(object):
             with open(self.filename, 'r') as file_to_check:
                 token = get_tokens(file_to_check.readlines())
         code, comment = get_comment_count(token)
-        if( code > 0 and comment/code < 0.05 ):
-            yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE + str(comment/code))
+        if( code > 0): ratio = comment/code
+        else:          ratio = 0
+        if(ratio < 0.05):
+            COMMENT_ERROR_CODE += str(ratio)
+        yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
 
 def get_tokens(code):
     tokens = tokenize.generate_tokens(lambda L=iter(code): next(L))
