@@ -37,7 +37,7 @@ class CommentToCodeRatio(object):
         if( code > 0): ratio = comment/code
         if(ratio < self.min_ratio):
             print(ratio)
-        yield (1, 1, _code, _error_tmpl.format(ratio))
+            yield (1, 1, _code, _error_tmpl.format(ratio))
 
 def get_tokens(code):
     tokens = tokenize.generate_tokens(lambda L=iter(code): next(L))
