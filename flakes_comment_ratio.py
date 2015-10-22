@@ -19,12 +19,12 @@ class CommentToCodeRatio(object):
 
     @classmethod
     def add_options(cls, parser):
-        parser.add_option('--min-code-comment-ratio', default=0.00, action='store', type='int', help="McCabe complexity threshold")
-        parser.config_options.append('min-code-comment-ratio')
+        parser.add_option('--min-code-comment-ratio', default=0.00, action='store', type='int', help="Comment to Code Ratio threshold")
+        parser.config_options.append('min_code_comment_ratio')
 
     @classmethod
     def parse_options(cls, options):
-        cls.min_ratio = int(options.min-code-comment-ratio)
+        cls.min_ratio = int(options.min_code_comment-ratio)
 
     def run(self):
         if self.filename == stdin:
