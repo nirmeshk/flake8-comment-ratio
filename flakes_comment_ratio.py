@@ -1,5 +1,6 @@
 from __future__ import division
 import sys, token, tokenize, optparse, ast
+from sys import stdin
 
 COMMENT_ERROR_CODE = 'T001'
 COMMENT_ERROR_MESSAGE = 'comment to code ratio too low'
