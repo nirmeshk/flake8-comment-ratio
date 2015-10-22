@@ -19,16 +19,15 @@ class CommentToCodeRatio(object):
             if( code > 0 and comment/code < 0.5 ):
                 yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
 
-def get_comment_count(fname):
+def get_comment_count(file_content):
     """ Run on just one file.
     """
-    source = open(fname)
     prev_toktype = token.INDENT
     comment = 0
     docstring = 0
     code = 0
 
-    tokgen = tokenize.generate_tokens(source.readline)
+    tokgen = tokenize.generate_tokens(file_content)
     for toktype, ttext, (slineno, scol), (elineno, ecol), ltext in tokgen:
         if toktype == token.STRING and prev_toktype == token.INDENT:
             # Docstring
