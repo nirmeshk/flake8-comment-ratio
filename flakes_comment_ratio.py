@@ -21,7 +21,7 @@ class CommentToCodeRatio(object):
             with open(self.filename, 'r') as file_to_check:
                 token = get_tokens(file_to_check.readlines())
         code, comment = get_comment_count(token)
-        if( code > 0 and comment/code < 0.5 ):
+        if( code > 0 and comment/code < 0.05 ):
             yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
 
 def get_tokens(code):
@@ -37,20 +37,15 @@ def get_comment_count(tokgen):
     code = 0
     for toktype, ttext, (slineno, scol), (elineno, ecol), ltext in tokgen:
         if toktype == token.STRING and prev_toktype == token.INDENT:
-            # Docstring
-            docstring += 1
-            print("Docstring")
+            docstring += 1  # Docstring
         elif toktype == tokenize.COMMENT:
-            # Comment
-            comment += 1
-            print("COMMENT")
+            comment += 1    # Comment
         else:
             code += 1
 
         prev_toktype = toktype
         last_col = ecol
         last_lineno = elineno
-    print("comments: ", docstring+comment )
     return code, docstring+comment
 
 if __name__ == '__main__':
