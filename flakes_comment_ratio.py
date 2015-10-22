@@ -21,8 +21,8 @@ class CommentToCodeRatio(object):
             with open(self.filename, 'r') as file_to_check:
                 token = get_tokens(file_to_check.readlines())
         code, comment = get_comment_count(token)
+        ratio = 0
         if( code > 0): ratio = comment/code
-        else:          ratio = 0
         if(ratio < 0.05):
             global COMMENT_ERROR_CODE 
             COMMENT_ERROR_CODE += str(ratio)
