@@ -15,7 +15,7 @@ class CommentToCodeRatio(object):
 
     def run(self):
         with open(self.filename, 'r') as file_to_check:
-            code, comment = get_comment_count(file_to_check.readlines())
+            code, comment = get_comment_count(file_to_check)
             if( code > 0 and comment/code < 0.5 ):
                 yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
 
