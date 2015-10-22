@@ -24,7 +24,7 @@ class CommentToCodeRatio(object):
 
     @classmethod
     def parse_options(cls, options):
-        cls.min_ratio = int(options.min_code_comment-ratio)
+        cls.min_ratio = int(options.min_code_comment_ratio)
 
     def run(self):
         if self.filename == stdin:
