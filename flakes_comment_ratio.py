@@ -7,6 +7,7 @@ __version__ = '1.1'
 
 class CommentToCodeRatio(object):
     name = 'flakes-comment-ratio'
+    version = __version__
 
     def __init__(self, tree, filename='(none)', builtins=None):
         self.tree = tree
