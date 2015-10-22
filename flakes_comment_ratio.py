@@ -24,7 +24,8 @@ class CommentToCodeRatio(object):
         if( code > 0): ratio = comment/code
         else:          ratio = 0
         if(ratio < 0.05):
-            global COMMENT_ERROR_CODE += str(ratio)
+            global COMMENT_ERROR_CODE 
+            COMMENT_ERROR_CODE += str(ratio)
         yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
 
 def get_tokens(code):
