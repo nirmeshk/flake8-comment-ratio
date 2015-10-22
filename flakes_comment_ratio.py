@@ -19,7 +19,7 @@ class CommentToCodeRatio(object):
 
     @classmethod
     def add_options(cls, parser):
-        parser.add_option('--min-code-comment-ratio', default=0.00, action='store', type='int', help="Comment to Code Ratio threshold")
+        parser.add_option('--min-code-comment-ratio', default=0.00, action='store', type='float', help="Comment to Code Ratio threshold")
         parser.config_options.append('min_code_comment_ratio')
 
     @classmethod
