@@ -3,7 +3,7 @@ import sys, token, tokenize, optparse, ast
 from sys import stdin
 
 COMMENT_ERROR_CODE = 'T001'
-COMMENT_ERROR_MESSAGE = 'Comment to Code ratio too low {:.2f}'
+COMMENT_ERROR_MESSAGE = 'Comment to Code ratio too low'
 __version__ = '1.1'
 
 class CommentToCodeRatio(object):
@@ -22,7 +22,7 @@ class CommentToCodeRatio(object):
                 token = get_tokens(file_to_check.readlines())
         code, comment = get_comment_count(token)
         if( code > 0 and comment/code < 0.05 ):
-            yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE.format(comment/code))
+            yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE + str(comment/code))
 
 def get_tokens(code):
     tokens = tokenize.generate_tokens(lambda L=iter(code): next(L))
