@@ -9,10 +9,22 @@ __version__ = '1.1'
 class CommentToCodeRatio(object):
     name = 'flakes-comment-ratio'
     version = __version__
+    _code = 'CTC 101'
+    _error_tmpl = "Comment to Code ratio too low: {:.4f}"
+    min_ratio = 0.0
 
     def __init__(self, tree, filename='(none)', builtins=None):
         self.tree = tree
         self.filename = (filename == 'stdin' and stdin) or filename
+
+    @classmethod
+    def add_options(cls, parser):
+        parser.add_option('--min-code-comment-ratio', default=0.00, action='store', type='int', help="McCabe complexity threshold")
+        parser.config_options.append('min-code-comment-ratio')
+
+    @classmethod
+    def parse_options(cls, options):
+        cls.min_ratio = int(options.min-code-comment-ratio)
 
     def run(self):
         if self.filename == stdin:
@@ -23,11 +35,9 @@ class CommentToCodeRatio(object):
         code, comment = get_comment_count(token)
         ratio = 0
         if( code > 0): ratio = comment/code
-        if(ratio < 0.05):
+        if(ratio < cls.min_ratio):
             print(ratio)
-            global COMMENT_ERROR_CODE 
-            COMMENT_ERROR_CODE += str(ratio)
-        yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
+        yield (1, 1, _code, _error_tmpl.format(ratio))
 
 def get_tokens(code):
     tokens = tokenize.generate_tokens(lambda L=iter(code): next(L))
