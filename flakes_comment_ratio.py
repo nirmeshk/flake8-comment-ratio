@@ -24,6 +24,7 @@ class CommentToCodeRatio(object):
         ratio = 0
         if( code > 0): ratio = comment/code
         if(ratio < 0.05):
+            print(ratio)
             global COMMENT_ERROR_CODE 
             COMMENT_ERROR_CODE += str(ratio)
         yield (1, 1, COMMENT_ERROR_MESSAGE, COMMENT_ERROR_CODE)
