@@ -3,6 +3,7 @@ import sys, token, tokenize, optparse, ast
 
 COMMENT_ERROR_CODE = 'T001'
 COMMENT_ERROR_MESSAGE = 'comment to code ratio too low'
+__version__ = '1.1'
 
 class CommentToCodeRatio(object):
     name = 'flakes-comment-ratio'
